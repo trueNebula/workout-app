@@ -10,9 +10,6 @@ const HelloPage = () => {
 			console.log(`${url}/hello`);
 			const res = await fetch(`http://${url}/hello`, {
 				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
 			});
 
 			if (!res.ok) {

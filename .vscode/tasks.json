@@ -26,7 +26,7 @@
 			// The name that shows up in terminal tab
 			"label": "app",
 			"type": "shell",
-			"command": "npm run dev",
+			"command": "bash",
 			"icon": {
 				"id": "folder",
 				"color": "terminal.ansiGreen"
@@ -84,7 +84,7 @@
 					"args": []
 				}
 			},
-			"isBackground": false,
+			"isBackground": true,
 			"problemMatcher": []
 		}
 	]
