@@ -1,3 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+    --color-bkg: #f1eff7;
+    --color-text: #05052e;
+    --color-primary: #461354;
+    --color-secondary: #ecb1ec;
+    --color-accent: #8181df;
+}
+
+[data-theme='dark'] {
+    --color-bkg: #020210;
+    --color-text: #f3f2f3;
+    --color-primary: #17001e;
+    --color-secondary: #3c0c37;
+    --color-accent: #d41e6d;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}

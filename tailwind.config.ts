@@ -1,20 +1,27 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: "media",
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        lumasima: ["Lumasima", "sans-serif"],
+        figtree: ["Figtree", "sans-serif"],
+      },
+      colors: {
+        "th-background": "var(--color-bkg)",
+        "th-text": "var(--color-text)",
+        "th-primary": "var(--color-primary)",
+        "th-secondary": "var(--color-secondary)",
+        "th-accent": "var(--color-accent)",
       },
     },
   },
   plugins: [],
-}
+};
 export default config
