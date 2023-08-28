@@ -1,0 +1,17 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "eslint.enable": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/.next": true,
+    },
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#9a5dc4",
+        "activityBar.foreground": "#ece3f3",
+        "activityBar.activeBackground": "#4a218d",
+        "activityBar.inactiveForeground": "#ece3f3",
+        "activityBarBadge.background": "#d3278b",
+        "activityBarBadge.foreground": "#ece3f3",
+    }
+}
