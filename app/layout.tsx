@@ -1,6 +1,6 @@
-import "./globals.css";
+import "@styles/globals.css";
 import type { Metadata } from "next";
-import { Providers } from "./providers";
+import { Providers } from "@components/providers/providers";
 
 export const metadata: Metadata = {
   title: "Workout App",

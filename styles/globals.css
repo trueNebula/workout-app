@@ -5,6 +5,7 @@
 :root {
     --color-bkg: #f3f2f3;
     --color-text: #020210;
+    --color-text-secondary: #f3f2f3;
     --color-primary: #5e188c;
     --color-secondary: #eee8ef;
     --color-accent: #396693;
@@ -13,6 +14,7 @@
 [data-theme='dark'] {
     --color-bkg: #020210;
     --color-text: #f3f2f3;
+    --color-text-secondary: #020210;
     --color-primary: #5e188c;
     --color-secondary: #231a26;
     --color-accent: #d5bfeb;

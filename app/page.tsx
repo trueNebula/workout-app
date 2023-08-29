@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { headingFont, textFont } from "./util/fonts";
+import { headingFont, textFont } from "@utils/fonts";
 import { useTheme } from "next-themes";
 import { Button } from "@mantine/core";
 
@@ -23,7 +23,7 @@ export default function Home() {
         </h1>
         <div className={`${textFont.className} text-th-text`}>Hello World</div>
         <Button
-          className={`${headingFont.className} bg-th-accent text-th-text w-60 h-10 rounded-lg`}
+          className={`${headingFont.className} bg-th-accent text-th-text-secondary w-60 h-10 rounded-lg`}
           onClick={() =>
             theme === "dark" ? setTheme("light") : setTheme("dark")
           }
