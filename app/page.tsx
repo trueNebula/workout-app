@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { headingFont, textFont } from "./util/fonts";
 import { useTheme } from "next-themes";
+import { Button } from "@mantine/core";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -21,14 +22,14 @@ export default function Home() {
           Title Bar
         </h1>
         <div className={`${textFont.className} text-th-text`}>Hello World</div>
-        <button
-          className={`${headingFont.className} text-th-text font-medium`}
+        <Button
+          className={`${headingFont.className} bg-th-accent text-th-text w-60 h-10 rounded-lg`}
           onClick={() =>
             theme === "dark" ? setTheme("light") : setTheme("dark")
           }
         >
           Swap Theme
-        </button>
+        </Button>
       </div>
       <div className="ml-80 w-80 h-80 rounded bg-th-primary"></div>
       <div className="pr-40 my-20 flex justify-between items-center w-100 h-40">
