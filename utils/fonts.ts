@@ -1,4 +1,4 @@
-import { Acme, Lunasima } from "next/font/google";
+import { Acme, Lunasima, Mandali } from "next/font/google";
 import { Figtree } from "next/font/google";
 
 export const testFont = Acme({
@@ -6,11 +6,12 @@ export const testFont = Acme({
   preload: false,
 });
 
-export const textFont = Lunasima({
+export const textFont = Mandali({
   weight: "400",
   preload: false,
 });
 
 export const headingFont = Figtree({
+  weight: "700",
   subsets: ["latin"],
 });

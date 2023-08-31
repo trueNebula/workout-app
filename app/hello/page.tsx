@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 
 const HelloPage = () => {
-	const [data, setData] = useState("");
-	useEffect(() => {
+  const [data, setData] = useState("");
+  const [id, setId] = useState("");
+  useEffect(() => {
     const url = process?.env?.NEXT_PUBLIC_BACKEND_API_URL;
 
     const dataFetch = async () => {
@@ -18,11 +19,17 @@ const HelloPage = () => {
 
       const data = await res.json();
       setData(await data.message);
+      setId(await data.id);
     };
     dataFetch();
   }, []);
 
-	return <h1>Hello {data}</h1>;
+  return (
+    <div>
+      <h1>Hello {data}</h1>
+      <h2>Your random ID is {id}</h2>
+    </div>
+  );
 };
 
 export default HelloPage;
