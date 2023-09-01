@@ -78,39 +78,41 @@ WorkoutExercise {
 }
 
 History {
+	_id: string,
 	sets: Array<WOSet>,
 	notes: string,
 	created_at: Date,
 }
 
 WOSet {
+	_id: string,
 	reps: number,
 	weight: number,
-	dropsets: Array<DropSet>,
-	myomatch: boolean,
 	rpe: number,
+	dropsets: boolean,
+	myomatch: boolean,
 }
-
-DropSet {
-	reps: number,
-	weight: number,
-}
-
 ```
 
 ```ts
 Exercise {
 	_id: string,
 	name: string,
-	category: string,
+	category: Category,
 	target: MuscleGroup,
 	muscles: Array<GenericMuscle>,
 	bias?: GenericMuscle,
 	description?: string,
-	steps: Array<String>,
+	cues: Array<String>,
 	link?: string,
 	created_at: Date,
 	updated_at?: Date,
+}
+
+Category {
+	Main Compound,
+	Secondary Compound,
+	Isolation,
 }
 
 MuscleGroup {
@@ -151,11 +153,5 @@ GenericMuscle {
 	Triceps Long Head,
 	Triceps Medial Head,
 	Triceps Lateral Head,
-}
-
-Category {
-	Main Compound,
-	Secondary Compound,
-	Isolation,
 }
 ```

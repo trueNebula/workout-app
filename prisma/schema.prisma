@@ -7,15 +7,182 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = "mongodb://localhost:27017/workout-app"
+  url      = env("DATABASE_URL")
 }
 
-model users {
+model User {
+  id         String      @id @map("_id")
+  username   String      @unique
+  email      String      @unique
+  password   String
+  mesocycles Mesocycle[]
+  created_at DateTime    @default(now())
+  updated_at DateTime?   @updatedAt
+
+  @@map("users")
+}
+
+model Mesocycle {
   id          String    @id @map("_id")
-  username    String
-  email       String
-  password    String
-  meoscycles  String[]
-  created_at  String
-  updated_at  String?
+  name        String
+  description String?
+  plans       Plan[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  @@map("mesocycles")
+}
+
+model Plan {
+  id          String    @id @map("_id")
+  name        String
+  description String?
+  workouts    Workout[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+
+  mesocycle   Mesocycle @relation(fields: [mesocycleId], references: [id])
+  mesocycleId String
+
+  @@map("plans")
+}
+
+model Workout {
+  id               String            @id @map("_id")
+  name             String
+  type             Type
+  workoutExercises WorkoutExercise[]
+  created_at       DateTime          @default(now())
+  updated_at       DateTime?         @updatedAt
+
+  plan       Plan      @relation(fields: [planId], references: [id])
+  planId     String
+  Exercise   Exercise? @relation(fields: [exerciseId], references: [id])
+  exerciseId String?
+
+  @@map("workouts")
+}
+
+enum Type {
+  FULL_BODY      @map("Full Body")
+  UPPER_BODY     @map("Upper Body")
+  LOWER_BODY     @map("Lower Body")
+  PUSH           @map("Push")
+  PULL           @map("Pull")
+  LEGS           @map("Legs")
+  CHEST_BACK     @map("Chest/Back")
+  SHOULDERS_ARMS @map("Shoulders/Arms")
+  ARMS           @map("Arms")
+}
+
+model WorkoutExercise {
+  id         String    @id @map("_id")
+  exercise   Exercise  @relation(fields: [exerciseId], references: [id])
+  exerciseId String
+  history    History[]
+  superset   Boolean
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  workout   Workout @relation(fields: [workoutId], references: [id])
+  workoutId String
+
+  @@map("workoutExercises")
+}
+
+model History {
+  id         String    @id @map("_id")
+  sets       WOSet[]
+  notes      String[]
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id])
+  workoutExerciseId String
+
+  @@map("histories")
+}
+
+model WOSet {
+  id         String    @id @map("_id")
+  reps       Int
+  weight     Float
+  rpe        Int
+  dropsets   Boolean
+  myomatch   Boolean
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  history   History @relation(fields: [historyId], references: [id])
+  historyId String
+
+  @@map("WOset")
+}
+
+model Exercise {
+  id          String          @id @map("_id")
+  name        String          @unique
+  category    Category
+  target      MuscleGroup
+  muscles     GenericMuscle[]
+  bias        GenericMuscle?
+  description String?
+  cues        String[]
+  link        String?
+  created_at  DateTime        @default(now())
+  updated_at  DateTime?       @updatedAt
+
+  workouts        Workout[]
+  WorkoutExercise WorkoutExercise[]
+
+  @@map("exercises")
+}
+
+enum Category {
+  MAIN_COMPOUND      @map("Main Compound")
+  SECONDARY_COMPOUND @map("Secondary Compound")
+  ISOLATION          @map("Isolation")
+}
+
+enum MuscleGroup {
+  NECK      @map("Neck")
+  CHEST     @map("Chest")
+  CORE      @map("Core")
+  SHOULDERS @map("Shoulders")
+  BACK      @map("Back")
+  LEGS      @map("Legs")
+  BICEPS    @map("Biceps")
+  TRICEPS   @map("Tricepts")
+}
+
+enum GenericMuscle {
+  NECK                 @map("Neck")
+  UPPER_PECS           @map("Upper Pecs")
+  MIDDLE_PECS          @map("Middle Pecs")
+  LOWER_PECS           @map("Lower Pecs")
+  UPPER_ABS            @map("Upper Abs")
+  LOWER_ABS            @map("Lower Abs")
+  FRONT_DELTS          @map("Front Delts")
+  SIDE_DELTS           @map("Side Delts")
+  REAR_DELTS           @map("Rear Delts")
+  UPPER_TRAPS          @map("Upper Traps")
+  MIDDLE_TRAPS         @map("Middle Traps")
+  LOWER_TRAPS          @map("Lower Traps")
+  RHOMBOIDS            @map("Rhomboids")
+  LATS                 @map("Lats")
+  ILIAC_LATS           @map("Iliac Lats")
+  QUADS                @map("Quards")
+  RECTUS_FEMORIS       @map("Rectus Femoris")
+  HAMSTRINGS           @map("Hamstrings")
+  GLUTES               @map("Glutes")
+  CALVES               @map("Calves")
+  TIBIALIS             @map("Tibialis")
+  BICEPS_LONG_HEAD     @map("Biceps Long Head")
+  BICEPS_SHORT_HEAD    @map("Biceps Short Head")
+  TRICEPS_LONG_HEAD    @map("Triceps Long Head")
+  TRICEPS_MEDIAL_HEAD  @map("Triceps Medial Head")
+  TRICEPS_LATERAL_HEAD @map("Triceps Lateral Head")
 }

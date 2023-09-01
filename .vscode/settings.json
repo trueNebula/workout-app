@@ -13,5 +13,6 @@
         "activityBar.inactiveForeground": "#ece3f3",
         "activityBarBadge.background": "#d3278b",
         "activityBarBadge.foreground": "#ece3f3",
-    }
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }
