@@ -3,21 +3,21 @@ import { default as prisma } from "@utils/prismaDb";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: { mesoId: string } }
 ) {
-  console.log("Users - GET id");
+  console.log("Mesocycles - GET id");
 
-  const user = await prisma.user.findUnique({
+  const mesocycle = await prisma.mesocycle.findUnique({
     where: {
-      id: params.userId,
+      id: params.mesoId,
     },
   });
 
-  if (!user) {
-    console.log("Error: User not found");
+  if (!mesocycle) {
+    console.log("Error: Mesocycle not found");
     return NextResponse.json(
       {
-        data: "User not found",
+        data: "Mesocycle not found",
       },
       {
         status: 422,
@@ -27,7 +27,7 @@ export async function GET(
 
   NextResponse.json(
     {
-      data: user,
+      data: mesocycle,
     },
     {
       status: 200,
@@ -37,30 +37,28 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: { mesoId: string } }
 ) {
-  console.log("Users - PATCH");
+  console.log("Mesocycles - PATCH");
 
   const body = await request.json();
-  const user = await prisma.user
+  const mesocycle = await prisma.mesocycle
     .update({
       where: {
-        id: params.userId,
+        id: params.mesoId,
       },
       data: {
-        username: body.username,
-        email: body.email,
-        password: body.password,
+        description: body.description,
       },
     })
     .catch(() => {
-      console.log("Error: User not found");
+      console.log("Error: Mesocycle not found");
     });
 
-  if (!user) {
+  if (!mesocycle) {
     return NextResponse.json(
       {
-        data: "User not found",
+        data: "Mesocycle not found",
       },
       {
         status: 422,
@@ -70,7 +68,7 @@ export async function PATCH(
 
   return NextResponse.json(
     {
-      data: user,
+      data: mesocycle,
     },
     {
       status: 200,
@@ -80,24 +78,24 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: { mesoId: string } }
 ) {
-  console.log("Users - DELETE");
+  console.log("Mesocycles - DELETE");
 
-  const user = await prisma.user
+  const mesocycle = await prisma.mesocycle
     .delete({
       where: {
-        id: params.userId,
+        id: params.mesoId,
       },
     })
     .catch(() => {
-      console.log("Error: User not found");
+      console.log("Error: Mesocycle not found");
     });
 
-  if (!user) {
+  if (!mesocycle) {
     return NextResponse.json(
       {
-        data: "User not found",
+        data: "Mesocycle not found",
       },
       {
         status: 422,
@@ -107,7 +105,7 @@ export async function DELETE(
 
   return NextResponse.json(
     {
-      data: user,
+      data: mesocycle,
     },
     {
       status: 200,

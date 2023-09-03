@@ -2,6 +2,12 @@ export interface LooseObject {
   [key: string]: any;
 }
 
+/**
+ * Generates a random ID for a database object
+ *
+ * @param identifier 2 letter uppercase string
+ * @returns Randomized ID
+ */
 export const getRandomId = (identifier: string): string => {
   const now = new Date().valueOf();
   const timePart = (now + 144000000 + ((now / 1000) % 1000)).toString(36);

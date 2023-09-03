@@ -98,6 +98,7 @@ WOSet {
 Exercise {
 	_id: string,
 	name: string,
+	rating: float,
 	category: Category,
 	target: MuscleGroup,
 	muscles: Array<GenericMuscle>,

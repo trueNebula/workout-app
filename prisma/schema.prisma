@@ -96,7 +96,7 @@ model WorkoutExercise {
 model History {
   id         String    @id @map("_id")
   sets       WOSet[]
-  notes      String[]
+  notes      String
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
@@ -119,21 +119,24 @@ model WOSet {
   history   History @relation(fields: [historyId], references: [id])
   historyId String
 
-  @@map("WOset")
+  @@map("WOSets")
 }
 
 model Exercise {
-  id          String          @id @map("_id")
-  name        String          @unique
-  category    Category
-  target      MuscleGroup
-  muscles     GenericMuscle[]
-  bias        GenericMuscle?
-  description String?
-  cues        String[]
-  link        String?
-  created_at  DateTime        @default(now())
-  updated_at  DateTime?       @updatedAt
+  id              String          @id @map("_id")
+  name            String          @unique
+  rating          Float
+  category        Category
+  target          MuscleGroup
+  muscles         GenericMuscle[]
+  bias            GenericMuscle?
+  description     String?
+  cues            String[]
+  link            String?
+  times_performed Int             @default(0) @map("timesPerformed")
+  discomfort      Boolean         @default(false)
+  created_at      DateTime        @default(now())
+  updated_at      DateTime?       @updatedAt
 
   workouts        Workout[]
   WorkoutExercise WorkoutExercise[]

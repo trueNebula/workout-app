@@ -1,43 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { default as prisma } from "@utils/prismaDb";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { userId: string } }
-) {
-  console.log("Users - GET - Mesocycles");
-
-  const mesocycles = await prisma.user.findFirst({
-    where: {
-      id: params.userId,
-    },
-    select: {
-      mesocycles: true,
-    },
-  });
-
-  if (!mesocycles) {
-    return NextResponse.json(
-      {
-        data: "User not found",
-      },
-      {
-        status: 422,
-      }
-    );
-  }
-
-  return NextResponse.json(
-    {
-      data: mesocycles,
-    },
-    {
-      status: 200,
-    }
-  );
-}
-
-export async function POST(
+export async function DELETE(
   request: NextRequest,
   { params }: { params: { userId: string } }
 ) {
@@ -50,9 +14,7 @@ export async function POST(
     },
     data: {
       mesocycles: {
-        connect: {
-          id: body.mesocycle,
-        },
+        upsert: body.mesocycle,
       },
     },
   });

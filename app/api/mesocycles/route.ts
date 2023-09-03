@@ -3,16 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { default as prisma } from "@utils/prismaDb";
 
 export async function GET() {
-  console.log("Users - GET");
-
-  const allUsers = await prisma.user.findMany({
-    include: {
-      mesocycles: true,
-    },
-  });
+  const allMesocycles = await prisma.mesocycle.findMany();
   return NextResponse.json(
     {
-      data: allUsers,
+      data: allMesocycles,
     },
     {
       status: 200,
@@ -21,15 +15,13 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  console.log("Users - POST");
-
   const body = await request.json();
-  const user = await prisma.user.create({
-    data: { id: getRandomId("US"), ...body },
+  const mesocycle = await prisma.mesocycle.create({
+    data: { id: getRandomId("MS"), ...body },
   });
   return NextResponse.json(
     {
-      data: user,
+      data: mesocycle,
     },
     {
       status: 201,
