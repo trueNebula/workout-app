@@ -16,6 +16,7 @@ model User {
   email      String      @unique
   password   String
   mesocycles Mesocycle[]
+  workouts   Workout[]
   created_at DateTime    @default(now())
   updated_at DateTime?   @updatedAt
 
@@ -37,12 +38,12 @@ model Mesocycle {
 }
 
 model Plan {
-  id          String    @id @map("_id")
+  id          String       @id @map("_id")
   name        String
   description String?
-  workouts    Workout[]
-  created_at  DateTime  @default(now())
-  updated_at  DateTime? @updatedAt
+  workouts    WOTemplate[]
+  created_at  DateTime     @default(now())
+  updated_at  DateTime?    @updatedAt
 
   mesocycle   Mesocycle @relation(fields: [mesocycleId], references: [id])
   mesocycleId String
@@ -50,18 +51,32 @@ model Plan {
   @@map("plans")
 }
 
-model Workout {
-  id               String            @id @map("_id")
-  name             String
+model WOTemplate {
+  id               String       @id @map("_id")
+  name             String?
   type             Type
-  workoutExercises WorkoutExercise[]
-  created_at       DateTime          @default(now())
-  updated_at       DateTime?         @updatedAt
+  workoutExercises WOExercise[]
+  created_at       DateTime     @default(now())
+  updated_at       DateTime?    @updatedAt
 
-  plan       Plan      @relation(fields: [planId], references: [id])
-  planId     String
+  plan   Plan   @relation(fields: [planId], references: [id])
+  planId String
+
+  @@map("WOtemplates")
+}
+
+model Workout {
+  id               String       @id @map("_id")
+  name             String?
+  type             Type
+  workoutExercises WOExercise[]
+  created_at       DateTime     @default(now())
+  updated_at       DateTime?    @updatedAt
+
   Exercise   Exercise? @relation(fields: [exerciseId], references: [id])
   exerciseId String?
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     String?
 
   @@map("workouts")
 }
@@ -78,32 +93,21 @@ enum Type {
   ARMS           @map("Arms")
 }
 
-model WorkoutExercise {
+model WOExercise {
   id         String    @id @map("_id")
   exercise   Exercise  @relation(fields: [exerciseId], references: [id])
   exerciseId String
-  history    History[]
+  sets       WOSet[]
   superset   Boolean
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
-  workout   Workout @relation(fields: [workoutId], references: [id])
-  workoutId String
+  workout      Workout    @relation(fields: [workoutId], references: [id])
+  workoutId    String
+  WOTemplate   WOTemplate @relation(fields: [WOTemplateId], references: [id])
+  WOTemplateId String
 
-  @@map("workoutExercises")
-}
-
-model History {
-  id         String    @id @map("_id")
-  sets       WOSet[]
-  notes      String
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
-
-  workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id])
-  workoutExerciseId String
-
-  @@map("histories")
+  @@map("WOexercises")
 }
 
 model WOSet {
@@ -116,10 +120,10 @@ model WOSet {
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
-  history   History @relation(fields: [historyId], references: [id])
-  historyId String
+  WOExercise   WOExercise @relation(fields: [WOExerciseId], references: [id])
+  WOExerciseId String
 
-  @@map("WOSets")
+  @@map("WOsets")
 }
 
 model Exercise {
@@ -138,8 +142,8 @@ model Exercise {
   created_at      DateTime        @default(now())
   updated_at      DateTime?       @updatedAt
 
-  workouts        Workout[]
-  WorkoutExercise WorkoutExercise[]
+  WorkoutExercise WOExercise[]
+  Workout         Workout[]
 
   @@map("exercises")
 }
