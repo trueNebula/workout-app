@@ -5,7 +5,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { userId: string } }
 ) {
-  console.log("Users - POST - Mesocycles");
+  console.log("Users - DELETE - Mesocycles");
 
   const body = await request.json();
   const user = await prisma.user.update({

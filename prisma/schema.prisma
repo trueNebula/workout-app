@@ -28,6 +28,7 @@ model Mesocycle {
   name        String
   description String?
   plans       Plan[]
+  active      Boolean
   created_at  DateTime  @default(now())
   updated_at  DateTime? @updatedAt
 
