@@ -25,7 +25,7 @@ export async function GET(
     );
   }
 
-  NextResponse.json(
+  return NextResponse.json(
     {
       data: user,
     },

@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id         String      @id @map("_id")
-  username   String      @unique
+  username   String     @unique
   email      String      @unique
   password   String
   mesocycles Mesocycle[]
