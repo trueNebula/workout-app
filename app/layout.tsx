@@ -1,5 +1,6 @@
 import "@styles/globals.css";
 import type { Metadata } from "next";
+import Navbar from "@components/ui/navbar";
 import { Providers } from "@components/providers/providers";
 
 export const metadata: Metadata = {
@@ -16,6 +17,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
+          <Navbar></Navbar>
+
           <main className="bg-th-background">{children}</main>
         </Providers>
       </body>

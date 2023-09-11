@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const UsersPage = () => {
+export default function UsersPage() {
   const [users, setUsers] = useState<any>([]);
   useEffect(() => {
     const url = process?.env?.NEXT_PUBLIC_BACKEND_API_URL;
@@ -33,6 +33,4 @@ const UsersPage = () => {
       ))}
     </div>
   );
-};
-
-export default UsersPage;
+}

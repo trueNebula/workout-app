@@ -4,7 +4,7 @@ import { headingFont, textFont } from "@utils/fonts";
 import { useTheme } from "next-themes";
 import { Button } from "@mantine/core";
 
-export default function Home() {
+export default function ThemePage() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
