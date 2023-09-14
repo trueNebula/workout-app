@@ -1,35 +1,28 @@
-import Container from "../Container";
-import Logo from "./Logo";
-import { BiUserCircle } from "react-icons/bi";
+import Link from "next/link";
+import BarContainer from "../BarContainer";
+import { BiSolidUserCircle, BiDumbbell } from "react-icons/bi";
+import { BsTrophyFill } from "react-icons/bs";
 
-const Navbar = () => {
+const NavBar = () => {
   return (
-    <div className="fixed w-full bg-th-background z-10 shadow-sm">
-      <div
-        className="
-      py-4
-      border-b-[1px]
-      "
-      >
-        <Container>
-          <div
-            className="
-            flex
-            flex-row
-            items-center
-            justify-between
-            gap-3
-            md:gap-0
-          "
-          >
-            <Logo />
-            <div>lmao</div>
-            <BiUserCircle />
-          </div>
-        </Container>
-      </div>
-    </div>
+    <BarContainer className="fixed inset-x-0 bottom-0" borderPlacement="t">
+      <Link href="/dashboard" prefetch={true}>
+        <li className="cursor-pointer">
+          <BsTrophyFill className="w-7 h-7" />
+        </li>
+      </Link>
+      <Link href="/mesocycle" prefetch={true}>
+        <li className="cursor-pointer">
+          <BiDumbbell className="w-7 h-7" />
+        </li>
+      </Link>
+      <Link href="/profile" prefetch={true}>
+        <li className="cursor-pointer">
+          <BiSolidUserCircle className="w-7 h-7" />
+        </li>
+      </Link>
+    </BarContainer>
   );
 };
 
-export default Navbar;
+export default NavBar;

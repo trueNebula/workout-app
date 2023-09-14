@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { headingFont, textFont } from "@utils/fonts";
 import { useTheme } from "next-themes";
-import { Button } from "@mantine/core";
 
 export default function ThemePage() {
   const [mounted, setMounted] = useState(false);
@@ -15,21 +14,21 @@ export default function ThemePage() {
 
   return (
     <div className="px-80">
-      <div className="h-100 w-100 grid place-items-center text-5xl pt-10 mb-20">
+      <div className="h-100 w-100 grid place-items-center text-3xl pt-10 mb-20">
         <h1
           className={`${headingFont.className} text-th-text text-7xl font-bold`}
         >
           Title Bar
         </h1>
         <div className={`${textFont.className} text-th-text`}>Hello World</div>
-        <Button
+        <button
           className={`${headingFont.className} bg-th-accent text-th-text-secondary w-60 h-10 rounded-lg`}
           onClick={() =>
             theme === "dark" ? setTheme("light") : setTheme("dark")
           }
         >
           Swap Theme
-        </Button>
+        </button>
       </div>
       <div className="ml-80 w-80 h-80 rounded bg-th-primary"></div>
       <div className="pr-40 my-20 flex justify-between items-center w-100 h-40">
