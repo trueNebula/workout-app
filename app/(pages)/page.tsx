@@ -1,6 +1,5 @@
 import { headingFont } from "@utils/fonts";
-import getCurrentUser from "./actions/getCurrentUser";
-import { useRouter } from "next/navigation";
+import getCurrentUser from "@actions/getCurrentUser";
 
 export default async function HomePage() {
   return (
