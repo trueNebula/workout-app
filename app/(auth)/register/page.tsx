@@ -7,12 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@components/shadcn/ui/card";
-import RegisterForm from "@components/ui/RegisterForm";
+import RegisterForm from "@components/ui/forms/RegisterForm";
 import Link from "next/link";
 
 export default function RegisterPage() {
   return (
-    <div className="h-screen w-screen mx-auto flex justify-center items-center">
+    <div className="">
       <Card className="w-96">
         <CardHeader>
           <CardTitle>Create an account</CardTitle>
@@ -21,7 +21,6 @@ export default function RegisterPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          lmao sign up bro
           <RegisterForm />
         </CardContent>
         <CardFooter className="flex flex-col w-full">

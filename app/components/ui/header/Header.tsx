@@ -1,12 +1,12 @@
 import Link from "next/link";
-import BarContainer from "../BarContainer";
+import BarContainer from "../containers/BarContainer";
 
 import Logo from "./Logo";
 import { HiCog6Tooth } from "react-icons/hi2";
 
 const Header = () => {
   return (
-    <BarContainer className="" borderPlacement="b">
+    <BarContainer className="bg-th-background" borderPlacement="b">
       <Link href="/">
         <li className="cursor-pointer">
           <Logo />

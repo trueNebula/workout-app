@@ -16,31 +16,36 @@ import {
 import { Input } from "@components/shadcn/ui/input";
 import { Button } from "@components/shadcn/ui/button";
 import { headingFont } from "@utils/fonts";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, {
-      message: "Required field.",
-    })
-    .email({ message: "Invalid email." }),
-  password: z.string().regex(new RegExp("^(?=.*[A-Z])(?=.*[0-9]).{8,}$"), {
-    message:
-      "Password must contain at least 8 characters, one uppercase letter and a number.",
+  username: z.string().min(1, {
+    message: "Required field.",
+  }),
+  password: z.string().min(1, {
+    message: "Required field.",
   }),
 });
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
     },
   });
 
+  const [usernameInput, setUsernameInput] = useState("");
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    signIn("credentials", {
+      username: values.username,
+      password: values.password,
+      callbackUrl: "/",
+    });
   }
 
   return (
@@ -48,14 +53,22 @@ export default function RegisterForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="name@domain.com" {...field} />
+                <Input
+                  placeholder="@username"
+                  {...field}
+                  // TODO: Implement the custom @ Input
+                  // value={"@" + usernameInput}
+                  // onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                  //   setUsernameInput(e.currentTarget.value.slice(1))
+                  // }
+                />
               </FormControl>
-              <FormDescription>Enter your email.</FormDescription>
+              <FormDescription>Enter your username.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -78,7 +91,7 @@ export default function RegisterForm() {
           className={`${headingFont.className} text-xl w-full mb-2`}
           type="submit"
         >
-          Register
+          Log In
         </Button>
       </form>
     </Form>

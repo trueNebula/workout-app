@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BarContainer from "../BarContainer";
+import BarContainer from "../containers/BarContainer";
 import { BiSolidUserCircle, BiDumbbell } from "react-icons/bi";
 import { BsTrophyFill } from "react-icons/bs";
 

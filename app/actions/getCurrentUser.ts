@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@utils/authOptions";
 import prisma from "@utils/prismaDb";
+import { LooseObject } from "@utils/helpers";
 
 export async function getSession() {
   return await getServerSession(authOptions);
@@ -9,6 +10,7 @@ export async function getSession() {
 export default async function getCurrentUser() {
   try {
     const session = await getSession();
+    // console.log(session);
 
     if (!session?.user?.name) {
       return null;

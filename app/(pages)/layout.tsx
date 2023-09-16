@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Header from "@components/ui/header";
 import Navbar from "@components/ui/navbar";
 import { ThemeProvider, SessionProvider } from "@components/providers";
-import { getServerSession } from "next-auth";
+import getCurrentUser, { getSession } from "@actions/getCurrentUser";
 
 export const metadata: Metadata = {
   title: "Workout App",
@@ -15,16 +15,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await getSession();
+  const user = await getCurrentUser();
+  // console.log(user);
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="h-screen">
         <SessionProvider session={session}>
-          <ThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
             <Navbar />
-            <main className="bg-th-background">{children}</main>
+            <main className="bg-th-background gradient mx-auto flex flex-col justify-center items-center">
+              {children}
+            </main>
           </ThemeProvider>
         </SessionProvider>
       </body>
