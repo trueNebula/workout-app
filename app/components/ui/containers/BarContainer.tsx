@@ -15,7 +15,7 @@ const BarContainer: React.FC<BarContainerProps> = ({
     <div className={`${className} w-full bg-th-background z-10 shadow-sm`}>
       <div
         className={`
-      py-4
+
       border-${borderPlacement}-[1px]
       border-neutral-800
       `}

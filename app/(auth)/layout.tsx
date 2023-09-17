@@ -15,6 +15,7 @@ export default async function AuthLayout({
   children: React.ReactNode;
 }) {
   const session = await getSession();
+  // console.log("layout", session);
   return (
     <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>

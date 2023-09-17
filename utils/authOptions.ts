@@ -64,6 +64,7 @@ export const authOptions: AuthOptions = {
       session.user.id = token.id;
       session.user.name = token.name;
 
+      // console.log("session", session);
       return session;
     },
     async jwt({ token, user }) {
@@ -72,6 +73,8 @@ export const authOptions: AuthOptions = {
         token.id = user.id;
         token.name = user.username;
       }
+
+      // console.log("token", token);
       return token;
     },
   },

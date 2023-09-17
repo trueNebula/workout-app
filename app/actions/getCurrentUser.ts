@@ -10,17 +10,28 @@ export async function getSession() {
 export default async function getCurrentUser() {
   try {
     const session = await getSession();
-    // console.log(session);
+    // console.log("getCurrUser", session);
 
     if (!session?.user?.name) {
       return null;
     }
 
-    const currentUser = await prisma.user.findUnique({
+    // session might have the user's name (login) or the id (register)
+    // try to find by name, then by id
+    const currentUserTemp = await prisma.user.findMany({
       where: {
-        username: session.user.name as string,
+        OR: [
+          {
+            username: session.user.name as string,
+          },
+          {
+            id: session.user.name as string,
+          },
+        ],
       },
     });
+
+    const currentUser = currentUserTemp[0];
 
     if (!currentUser) {
       return null;

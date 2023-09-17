@@ -5,17 +5,19 @@ const Logo = () => {
       w-10
       h-10
       rounded-full
-      bg-th-primary
+      gradient
       text-white
-      text-base
+      text-xl
       font-bold
       flex
+      gap-0.5
       justify-center
       items-center
       cursor-pointer
     "
     >
-      RR
+      <span className="text-outline-light text-th-text-secondary">R</span>
+      <span>R</span>
     </div>
   );
 };

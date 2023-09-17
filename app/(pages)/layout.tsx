@@ -17,18 +17,21 @@ export default async function RootLayout({
 }) {
   const session = await getSession();
   const user = await getCurrentUser();
-  // console.log(user);
+  // console.log(session);
+  console.log(user);
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="h-screen">
+      <body>
         <SessionProvider session={session}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Header />
-            <Navbar />
-            <main className="bg-th-background gradient mx-auto flex flex-col justify-center items-center">
-              {children}
-            </main>
+            <div className="h-screen flex flex-col">
+              <Header />
+              <Navbar />
+              <main className="bg-th-background gradient w-screen mx-auto flex-grow flex flex-col justify-center items-center">
+                {children}
+              </main>
+            </div>
           </ThemeProvider>
         </SessionProvider>
       </body>
