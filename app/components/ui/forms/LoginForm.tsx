@@ -49,51 +49,51 @@ export default function LoginForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="@username"
-                  {...field}
-                  // TODO: Implement the custom @ Input
-                  // value={"@" + usernameInput}
-                  // onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  //   setUsernameInput(e.currentTarget.value.slice(1))
-                  // }
-                />
-              </FormControl>
-              <FormDescription>Enter your username.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormDescription>Enter your password.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          className={`${headingFont.className} text-xl w-full mb-2`}
-          type="submit"
-        >
-          Log In
-        </Button>
-      </form>
-    </Form>
-  );
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<FormField
+					control={form.control}
+					name="username"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Username</FormLabel>
+							<FormControl>
+								<Input
+									placeholder="@username"
+									{...field}
+									// TODO: Implement the custom @ Input
+									// value={"@" + usernameInput}
+									// onChange={(e: React.FormEvent<HTMLInputElement>) =>
+									//   setUsernameInput(e.currentTarget.value.slice(1))
+									// }
+								/>
+							</FormControl>
+							<FormDescription>Enter your username.</FormDescription>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="password"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Password</FormLabel>
+							<FormControl>
+								<Input placeholder="" {...field} type="password" />
+							</FormControl>
+							<FormDescription>Enter your password.</FormDescription>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<Button
+					className={`${headingFont.className} text-xl w-full mb-2`}
+					type="submit"
+				>
+					Log In
+				</Button>
+			</form>
+		</Form>
+	);
 }
