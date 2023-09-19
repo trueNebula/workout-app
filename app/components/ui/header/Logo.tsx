@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Logo = () => {
   return (
     <div
@@ -16,8 +18,15 @@ const Logo = () => {
       cursor-pointer
     "
     >
-      <span className="text-outline-light text-th-text-secondary">R</span>
-      <span>R</span>
+      {/* <span className="text-outline-light text-th-text-secondary">R</span>
+      <span>R</span> */}
+      <Image
+        src="/logo-icon.png"
+        width={32}
+        height={32}
+        alt="ReRacked Icon"
+        loading="lazy"
+      />
     </div>
   );
 };

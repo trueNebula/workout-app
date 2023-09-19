@@ -7,7 +7,22 @@ import getCurrentUser, { getSession } from "@actions/getCurrentUser";
 
 export const metadata: Metadata = {
   title: "Workout App",
-  description: "Change this lmao",
+  description: "Your one stop shop for making gains.",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/light/favicon.ico",
+        href: "/light/favicon.ico",
+      },
+      // TODO: Figure this shit out
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/dark/favicon.ico",
+        href: "/dark/favicon.ico",
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({

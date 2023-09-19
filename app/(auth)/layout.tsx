@@ -6,7 +6,22 @@ import getCurrentUser, { getSession } from "@actions/getCurrentUser";
 
 export const metadata: Metadata = {
   title: "Login or Sign Up",
-  description: "Change this lmao",
+  description: "You need an account to use the app.",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/light/favicon.ico",
+        href: "/light/favicon.ico",
+      },
+      // TODO: Figure this shit out
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/dark/favicon.ico",
+        href: "/dark/favicon.ico",
+      },
+    ],
+  },
 };
 
 export default async function AuthLayout({
