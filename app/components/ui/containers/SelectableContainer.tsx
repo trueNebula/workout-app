@@ -12,15 +12,15 @@ export default function SelectableContainer({
   children,
 }: SelectableContainerProps) {
   return (
-    <div
-      className={cn(
-        `w-14 h-14 cursor-pointer flex justify-center items-center rounded-2xl ${
-          selected && "bg-blue-950"
-        }`,
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+		<div
+			className={cn(
+				`w-14 h-14 cursor-pointer flex justify-center items-center rounded-2xl ${
+					selected && "bg-blue-950"
+				}`,
+				className
+			)}
+		>
+			{children}
+		</div>
+	);
 }

@@ -12,17 +12,18 @@ const BarContainer: React.FC<BarContainerProps> = ({
   children,
 }) => {
   return (
-    <div className={`${className} w-full bg-th-background z-10 shadow-sm`}>
-      <div
-        className={`
-
+		<div
+			className={`${className} w-full bg-th-background z-10 shadow-sm`}
+		>
+			<div
+				className={`
       border-${borderPlacement}-[1px]
       border-neutral-800
       `}
-      >
-        <Container>
-          <ul
-            className="
+			>
+				<Container>
+					<ul
+						className="
             flex
             flex-row
             items-center
@@ -31,13 +32,13 @@ const BarContainer: React.FC<BarContainerProps> = ({
             md:gap-0
             px-5
           "
-          >
-            {children}
-          </ul>
-        </Container>
-      </div>
-    </div>
-  );
+					>
+						{children}
+					</ul>
+				</Container>
+			</div>
+		</div>
+	);
 };
 
 export default BarContainer;

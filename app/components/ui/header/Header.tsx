@@ -18,17 +18,17 @@ const Header = () => {
   }, [path]);
 
   return (
-    <BarContainer className="bg-th-background" borderPlacement="b">
-      <Link href="/">
-        <Logo />
-      </Link>
-      <Link href="/settings">
-        <SelectableContainer selected={currentPage === "settings"}>
-          <HiCog6Tooth className="w-7 h-7" />
-        </SelectableContainer>
-      </Link>
-    </BarContainer>
-  );
+		<BarContainer className="bg-th-background rounded-b-lg" borderPlacement="b">
+			<Link href="/">
+				<Logo />
+			</Link>
+			<Link href="/settings">
+				<SelectableContainer selected={currentPage === "settings"}>
+					<HiCog6Tooth className="w-7 h-7" />
+				</SelectableContainer>
+			</Link>
+		</BarContainer>
+	);
 };
 
 export default Header;

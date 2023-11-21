@@ -36,20 +36,20 @@ export default async function RootLayout({
   console.log(user);
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <SessionProvider session={session}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="h-screen flex flex-col">
-              <Header />
-              <Navbar />
-              <main className="bg-th-background gradient w-screen mx-auto flex-grow flex flex-col justify-center items-center">
-                {children}
-              </main>
-            </div>
-          </ThemeProvider>
-        </SessionProvider>
-      </body>
-    </html>
-  );
+		<html lang="en" suppressHydrationWarning>
+			<body>
+				<SessionProvider session={session}>
+					<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+						<div className="h-screen flex flex-col bg-th-background gradient w-screen">
+							<Header />
+							<Navbar />
+							<main className=" mx-auto flex-grow flex flex-col justify-center items-center">
+								{children}
+							</main>
+						</div>
+					</ThemeProvider>
+				</SessionProvider>
+			</body>
+		</html>
+	);
 }
